@@ -4,27 +4,27 @@
 }
 
 <h2>@ViewData["Title"].</h2>
-<p class="text-success">@ViewData["StatusMessage"]</p>
+<p >@ViewData["StatusMessage"]</p>
 
 <div>
     <h4>Change your account settings</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl>
         <dt>Password:</dt>
         <dd>
             @if (Model.HasPassword)
             {
-                <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Change</a>
+                <a asp-controller="Manage" asp-action="ChangePassword" >Change</a>
             }
             else
             {
-                <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">Create</a>
+                <a asp-controller="Manage" asp-action="SetPassword" >Create</a>
             }
         </dd>
         <dt>External Logins:</dt>
         <dd>
 
-            @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Manage</a>
+            @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" >Manage</a>
         </dd>
         <dt>Phone Number:</dt>
         <dd>
