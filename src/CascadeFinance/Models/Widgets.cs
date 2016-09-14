@@ -20,6 +20,11 @@ namespace CascadeFinance.Models
         [Required]
         public decimal Total { get; set; }
 
+        //Foreign Key
+        public int ApplicationUserId { get; set; }
+
+        public ApplicationUser ApplicationUser { get; set; }
+
         public List<Expenses> Expenses { get; set; }
     }
 }
