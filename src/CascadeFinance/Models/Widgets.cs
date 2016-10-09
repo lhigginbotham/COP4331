@@ -26,5 +26,10 @@ namespace CascadeFinance.Models
         public ApplicationUser ApplicationUser { get; set; }
 
         public List<Expenses> Expenses { get; set; }
+
+        public static implicit operator List<object>(Widgets v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
