@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-CascadeFinance-0a308ede-71ee-4012-87e1-d63487dc962f",
 
   "dependencies": {
@@ -43,7 +43,8 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.1"
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.1",
+    "CascadeFinance.Plaid": "1.0.0-*"
   },
 
   "commands": {
