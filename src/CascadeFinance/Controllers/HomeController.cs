@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CascadeFinance.Plaid;
 
 namespace CascadeFinance.Controllers
 {
@@ -10,6 +11,8 @@ namespace CascadeFinance.Controllers
     {
         public IActionResult Index()
         {
+            TestPost test = new TestPost();
+            test.PostRequest();
             return View();
         }
 
