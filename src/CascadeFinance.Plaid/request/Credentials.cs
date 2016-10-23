@@ -7,9 +7,15 @@ namespace CascadeFinance.Plaid.request
 {
     public class Credentials
     {
-        private string username;
-        private string password;
-        private string pin;
+        public string username;
+        public string password;
+        public string pin;
+
+        public Credentials(string username, string password)
+        {
+            this.username = username;
+            this.password = password;
+        }
 
         public Credentials(string username, string password, string pin)
         {

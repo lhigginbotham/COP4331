@@ -1,4 +1,5 @@
-﻿using CascadeFinance.Plaid.response;
+﻿using CascadeFinance.Plaid.request;
+using CascadeFinance.Plaid.response;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -19,6 +20,9 @@ namespace CascadeFinance.Plaid
         public async void PostRequest()
         {
             PlaidClient pClient = new PlaidClient("test_id", "test_secret");
+            Credentials credentials = new Credentials("plaid_test", "plaid_good");
+            pClient.requestAllAccountData(credentials, "wells");
+
             using (var client = new HttpClient())
             {
                 var values = new Dictionary<string, string>
