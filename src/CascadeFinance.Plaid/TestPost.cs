@@ -35,7 +35,9 @@ namespace CascadeFinance.Plaid
 
                 var responseString = await response.Content.ReadAsStringAsync();
 
-                Debug.WriteLine("Ending");
+                //JsonValue value = JsonValue.Parse(responseString);
+
+                Debug.WriteLine(responseString);
             }
 
         }
