@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CascadeFinance.Plaid.response;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -15,6 +18,7 @@ namespace CascadeFinance.Plaid
 
         public async void PostRequest()
         {
+            PlaidClient pClient = new PlaidClient("test_id", "test_secret");
             using (var client = new HttpClient())
             {
                 var values = new Dictionary<string, string>
@@ -36,6 +40,16 @@ namespace CascadeFinance.Plaid
                 var responseString = await response.Content.ReadAsStringAsync();
 
                 //JsonValue value = JsonValue.Parse(responseString);
+
+                JObject testSearch = JObject.Parse(responseString);
+                IList<JToken> results = testSearch["accounts"].Children().ToList();
+
+                IList<Account> accounts = new List<Account>();
+                foreach(JToken result in results)
+                {
+                    Account account = JsonConvert.DeserializeObject<Account>(result.ToString());
+                    accounts.Add(account);
+                }
 
                 Debug.WriteLine(responseString);
             }
