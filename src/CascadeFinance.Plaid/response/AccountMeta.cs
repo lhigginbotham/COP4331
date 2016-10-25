@@ -9,11 +9,13 @@ namespace CascadeFinance.Plaid.response
     {
         private string name;
         private string number;
+        private string limit;
 
-        public AccountMeta(string name, string number)
+        public AccountMeta(string name, string number, string limit)
         {
             this.name = name;
             this.number = number;
+            this.limit = limit;
         }
     }
 }
