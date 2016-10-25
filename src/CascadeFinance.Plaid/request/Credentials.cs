@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CascadeFinance.Plaid.request
+namespace CascadeFinance.Plaid.Request
 {
     public class Credentials
     {

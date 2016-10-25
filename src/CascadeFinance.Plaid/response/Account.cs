@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CascadeFinance.Plaid.response
+namespace CascadeFinance.Plaid.Response
 {
     public class Account
     {
@@ -12,13 +12,13 @@ namespace CascadeFinance.Plaid.response
         private string userId;
 
         private Balance balance;
-        private AccountMeta accountMeta;
+        private Meta accountMeta;
 
         private string institutionType;
         private string type;
         private string subtype;
 
-        public Account(string _id, string _item, string _user, Balance balance, AccountMeta meta, string institution_type, string type, string subtype)
+        public Account(string _id, string _item, string _user, Balance balance, Meta meta, string institution_type, string type, string subtype)
         {
             this.id = _id;
             this.item = _item;

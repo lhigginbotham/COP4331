@@ -1,4 +1,4 @@
-﻿using CascadeFinance.Plaid.request;
+﻿using CascadeFinance.Plaid.Request;
 using System;
 using System.Collections.Generic;
 
