@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace CascadeFinance.Plaid.request
+namespace CascadeFinance.Plaid.Request
 {
     public class Request
     {

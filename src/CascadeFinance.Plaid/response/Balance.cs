@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CascadeFinance.Plaid.response
+namespace CascadeFinance.Plaid.Response
 {
     public class Balance
     {

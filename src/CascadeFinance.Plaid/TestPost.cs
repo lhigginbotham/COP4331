@@ -1,5 +1,5 @@
-﻿using CascadeFinance.Plaid.request;
-using CascadeFinance.Plaid.response;
+﻿using CascadeFinance.Plaid.Request;
+using CascadeFinance.Plaid.Response;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -21,7 +21,7 @@ namespace CascadeFinance.Plaid
         {
             PlaidClient pClient = new PlaidClient("test_id", "test_secret");
             Credentials credentials = new Credentials("plaid_test", "plaid_good");
-            pClient.requestAllAccountData(credentials, "wells");
+            var responseString = pClient.requestAllAccountData(credentials, "wells");
 
             using (var client = new HttpClient())
             {
@@ -41,9 +41,11 @@ namespace CascadeFinance.Plaid
 
                 var response = await client.PostAsync("https://tartan.plaid.com/connect", content);
 
-                var responseString = await response.Content.ReadAsStringAsync();
+                //var responseString = await response.Content.ReadAsStringAsync();
                 Parser parser = new Parser();
                 IList<Account> accounts = parser.parseAccounts(responseString);
+
+                IList<Transaction> transactions = parser.parseTransactions(responseString);
 
                 Debug.WriteLine("Final Accounts");
             }
