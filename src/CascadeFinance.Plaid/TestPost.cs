@@ -42,22 +42,11 @@ namespace CascadeFinance.Plaid
                 var response = await client.PostAsync("https://tartan.plaid.com/connect", content);
 
                 var responseString = await response.Content.ReadAsStringAsync();
+                Parser parser = new Parser();
+                IList<Account> accounts = parser.parseAccounts(responseString);
 
-                //JsonValue value = JsonValue.Parse(responseString);
-
-                JObject testSearch = JObject.Parse(responseString);
-                IList<JToken> results = testSearch["accounts"].Children().ToList();
-
-                IList<Account> accounts = new List<Account>();
-                foreach(JToken result in results)
-                {
-                    Account account = JsonConvert.DeserializeObject<Account>(result.ToString());
-                    accounts.Add(account);
-                }
-
-                Debug.WriteLine(responseString);
+                Debug.WriteLine("Final Accounts");
             }
-
         }
     }
 }
