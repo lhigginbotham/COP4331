@@ -39,6 +39,13 @@ namespace CascadeFinance
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+            services.Configure<SecretOptions>(Configuration);
+            services.Configure<SecretOptions>(secretOptions =>
+            {
+                secretOptions.PlaidSecret = Configuration["PlaidSecret"];
+            });
+
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));

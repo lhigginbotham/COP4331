@@ -15,6 +15,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+	"Kestrel": {
+      "commandName": "Kestrel",
+      "launchBrowser": true,
+	  "launchUrl": "http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     "CascadeFinance": {
       "commandName": "Project",
       "launchBrowser": true,
