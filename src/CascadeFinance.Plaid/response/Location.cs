@@ -13,7 +13,7 @@ namespace CascadeFinance.Plaid.Response
         public string zip;
         Coordinates coordinates;
 
-        public Location(string address, string city, string state, string zip, Coordinates cooridnates)
+        public Location(string address, string city, string state, string zip, Coordinates coordinates)
         {
             this.address = address;
             this.city = city;
