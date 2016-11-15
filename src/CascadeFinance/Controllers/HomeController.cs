@@ -21,8 +21,12 @@ namespace CascadeFinance.Controllers
         public IActionResult Index()
         {
             string secret = _optionsAccessor.Value.PlaidSecret;
-            TestPost test = new TestPost(secret);
-            test.PostRequest();
+            if (secret == null)
+            {
+                secret = "test_secret";
+            }
+            TestPost test = new TestPost();
+            test.PostRequest(secret);
             return View();
         }
 
