@@ -4,14 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CascadeFinance.Plaid;
+using Microsoft.Extensions.Options;
+using CascadeFinance.Services;
 
 namespace CascadeFinance.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IOptions<SecretOptions> _optionsAccessor;
+
+        public HomeController(IOptions<SecretOptions> optionsAccessor)
+        {
+            _optionsAccessor = optionsAccessor;
+        }
+
         public IActionResult Index()
         {
-            TestPost test = new TestPost();
+            string secret = _optionsAccessor.Value.PlaidSecret;
+            TestPost test = new TestPost(secret);
             test.PostRequest();
             return View();
         }

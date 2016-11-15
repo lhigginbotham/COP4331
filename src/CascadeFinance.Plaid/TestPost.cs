@@ -17,9 +17,9 @@ namespace CascadeFinance.Plaid
         {
         }
 
-        public async void PostRequest()
+        public async void PostRequest(string secret)
         {
-            PlaidClient pClient = new PlaidClient("test_id", "test_secret");
+            PlaidClient pClient = new PlaidClient("test_id", secret);
             Credentials credentials = new Credentials("plaid_test", "plaid_good");
             var responseString = pClient.requestAllAccountData(credentials, "wells");
 
