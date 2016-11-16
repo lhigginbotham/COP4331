@@ -10,6 +10,9 @@ namespace CascadeFinance.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Widgets> Widgets { get; set; }
+        public DbSet<Expenses> Expenses { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
