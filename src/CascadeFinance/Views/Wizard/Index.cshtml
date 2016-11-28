@@ -10,64 +10,220 @@
                         <a class="waves-effect waves-cyan" href="#incomeDir">Income</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#emailDir">Housing</a>
+                        <a class="waves-effect waves-cyan" href="#housingDir">Housing</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#codeDir">Groceries</a>
+                        <a class="waves-effect waves-cyan" href="#groceriesDir">Groceries</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#appsDir">Essentials</a>
+                        <a class="waves-effect waves-cyan" href="#essentialsDir">Essentials</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#emailDir">Income Expenses</a>
+                        <a class="waves-effect waves-cyan" href="#incomeExpensesDir">Income Expenses</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#codeDir">Healthcare</a>
+                        <a class="waves-effect waves-cyan" href="#healthcareDir">Healthcare</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#appsDir">Min. Debt Payments</a>
+                        <a class="waves-effect waves-cyan" href="#minDebtDir">Min. Debt Payments</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#emailDir">Other Expenses</a>
+                        <a class="waves-effect waves-cyan" href="#otherExpensesDir">Other Expenses</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#codeDir">Total</a>
+                        <a class="waves-effect waves-cyan" href="#totalDir">Total</a>
                     </li>
                     <li class="tab">
-                        <a class="waves-effect waves-cyan" href="#codeDir">Prioritization</a>
+                        <a class="waves-effect waves-cyan" href="#priorityDir">Prioritization</a>
                     </li>
                 </ul>
             </div>
             <div class="col s8 m9 l9">
-                <div id="incomeDir" class="tab-content">
-                    <div class="large">
-                        <div class="card white darken-1">
-                            <form asp-controller="Wizard" asp-action="Submit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <form asp-controller="Wizard" asp-action="Submit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    <div id="incomeDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
                                 <div class="card-content cyan-text">
                                     <span class="card-title">Income</span>
                                     <div class="divider"></div>
                                     <div asp-validation-summary="All"></div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input asp-for="MonthlyIncome" class="validate" />
+                                            <input type="number" step="any" asp-for="MonthlyIncome" class="validate" />
                                             <label asp-for="MonthlyIncome"></label>
                                             <span asp-validation-for="MonthlyIncome"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="offset-s10">
                                     <button class="btn waves-effect waves-light" type="submit">
                                         Register
                                         <i class="mdi-content-send right"></i>
                                     </button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                    <div id="emailDir" class="tab-content"></div>
-                    <div id="codeDir" class="tab-content"></div>
-                </div>
+                    <div id="housingDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Housing</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on housing:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="HousingExpenses" class="validate" />
+                                            <label asp-for="HousingExpenses"></label>
+                                            <span asp-validation-for="HousingExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="groceriesDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Groceries</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on groceries:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="GroceryExpenses" class="validate" />
+                                            <label asp-for="GroceryExpenses"></label>
+                                            <span asp-validation-for="GroceryExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="essentialsDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Essentials</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on essentials:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="EssentialExpenses" class="validate" />
+                                            <label asp-for="EssentialExpenses"></label>
+                                            <span asp-validation-for="EssentialExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="incomeExpensesDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Income Earning Expenses</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on expenses related to earning income:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="IncomeEarningExpenses" class="validate" />
+                                            <label asp-for="IncomeEarningExpenses"></label>
+                                            <span asp-validation-for="IncomeEarningExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="healthcareDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Healthcare</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on healthcare:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="HealthcareExpenses" class="validate" />
+                                            <label asp-for="HealthcareExpenses"></label>
+                                            <span asp-validation-for="HealthcareExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="minDebtDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Minimum Debt Payments</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your monthly minimum payments on any debt:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="MinDebtExpenses" class="validate" />
+                                            <label asp-for="MinDebtExpenses"></label>
+                                            <span asp-validation-for="MinDebtExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="otherExpensesDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Other Expenses</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on other expenses:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="OtherExpenses" class="validate" />
+                                            <label asp-for="OtherExpenses"></label>
+                                            <span asp-validation-for="OtherExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="totalDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Total Expenses</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Your current total expenses are:</p>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="priorityDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Prioritization</span>
+                                    <div class="divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
