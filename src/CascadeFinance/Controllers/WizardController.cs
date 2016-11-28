@@ -14,6 +14,12 @@ namespace CascadeFinance.Controllers
             return View();
         }
 
+        public IActionResult AddAccount()
+        {
+            var model = new BankAccountViewModel();
+            return View(model);
+        }
+
         public IActionResult Submit()
         {
             return View();
