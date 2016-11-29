@@ -12,9 +12,7 @@
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+      
         <link rel="stylesheet" href="~/lib/materialize/css/materialize.min.css" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
@@ -28,7 +26,7 @@
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Help</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Help">Help</a></li>
                     <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
                 </ul>
             </div>
@@ -51,7 +49,7 @@
                     <div class="col l4 offset-l2 s12">
                         <ul>
                             <li><a class="white-text" asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li><a class="white-text " href="#!">Help</a></li>
+                            <li><a class="white-text" asp-controller="Home" asp-action="Help">Help</a></li>
                             <li><a class="white-text" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
                         </ul>
                     </div>
@@ -66,7 +64,7 @@
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        
         <script src="~/lib/materialize/js/materialize.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
@@ -75,8 +73,7 @@
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery">
         </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+        <script 
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
         <script src="~/lib/materialize/js/materialize.min.js"></script>
