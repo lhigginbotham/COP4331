@@ -27,5 +27,8 @@ namespace CascadeFinance.Models.WizardViewModels
             new SelectListItem { Value = "capone360", Text = "Capital One 360"  },
             new SelectListItem { Value = "chase", Text = "Chase" },
         };
+
+        [Display(Name = "Challange Question")]
+        public string ChallangeQuestion;
     }
 }
