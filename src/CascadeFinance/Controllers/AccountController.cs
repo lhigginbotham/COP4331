@@ -85,6 +85,11 @@ namespace CascadeFinance.Controllers
             return View(model);
         }
 
+        public IActionResult AccountSettings()
+        {
+            return View();
+        }
+
         //
         // GET: /Account/Register
         [HttpGet]
@@ -436,6 +441,7 @@ namespace CascadeFinance.Controllers
             }
 
         }
+        
 
 
         #region Helpers
