@@ -18,17 +18,15 @@
     </environment>
 </head>
 <body>
+        <a name="top"></a>
         <!-- NAVIGATION -->
         <nav class="cyan lighten-1">
             <div class="nav-wrapper">
                 <a  class="brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/images/logo-small.png" width="80%" height="auto" />
                 </a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Help">Help</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
-                </ul>
+                
+                @await Html.PartialAsync("_LoginPartial")
             </div>
        </nav>
 
@@ -48,9 +46,8 @@
 
                     <div class="col l4 offset-l2 s12">
                         <ul>
-                            <li><a class="white-text" asp-controller="Home" asp-action="Index">Home</a></li>
                             <li><a class="white-text" asp-controller="Home" asp-action="Help">Help</a></li>
-                            <li><a class="white-text" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                            <li><a class="white-text" href="#top">Top of Page</a></li>
                         </ul>
                     </div>
                 </div>
