@@ -55,6 +55,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? interest = @transaction.@category?.Contains("Interest");
+                                            bool? payroll = @transaction.@category?.Contains("Payroll");
+                                            bool? venmo = @transaction.@category?.Contains("Venmo");
+                                            if (interest.HasValue && payroll.HasValue && venmo.HasValue && (interest.Value == true || payroll.Value == true
+                                                || (venmo.Value == true && @transaction.name.Contains("Cashout"))))
+                                           {
+                                            <tr>
+                                                <td>@transaction.date</td>
+                                                <td>@transaction.name</td>
+                                                <td>@transaction.amount</td>
+                                            </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
                                 <div class="offset-s10">
                                     <button class="btn waves-effect waves-light" type="submit">
                                         Register
@@ -80,6 +107,29 @@
                                         </div>
                                     </div>
                                 </div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? housing = @transaction.@category?.Contains("Housing");
+                                            if (housing.HasValue && (housing.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -99,6 +149,30 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? food = @transaction.@category?.Contains("Food and Drink");
+                                            if (food.HasValue && (food.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -118,6 +192,29 @@
                                         </div>
                                     </div>
                                 </div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? utilities = @transaction.@category?.Contains("Utilities");
+                                            if (utilities.HasValue && (utilities.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -137,6 +234,29 @@
                                         </div>
                                     </div>
                                 </div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? incomeExpense = @transaction.@category?.Contains("Computers and Electronics");
+                                            if (incomeExpense.HasValue && (incomeExpense.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -156,6 +276,29 @@
                                         </div>
                                     </div>
                                 </div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? healthcare = @transaction.@category?.Contains("Healthcare");
+                                            if (healthcare.HasValue && (healthcare.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -175,6 +318,30 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? debt = @transaction.@category?.Contains("Debt");
+                                            if (debt.HasValue && (debt.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -194,6 +361,30 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? venmo = @transaction.@category?.Contains("Venmo");
+                                            if (@transaction.category == null || venmo.HasValue && (venmo.Value == true && @transaction.name.Contains("Payment")))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

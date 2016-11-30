@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using CascadeFinance.Plaid.Response;
 
 namespace CascadeFinance.Models.WizardViewModels
 {
@@ -40,5 +41,7 @@ namespace CascadeFinance.Models.WizardViewModels
         [Required]
         [Display(Name = "Other Expenses")]
         public double OtherExpenses { get; set; }
+
+        public IList<Transaction> transactions { get; set; }
     }
 }

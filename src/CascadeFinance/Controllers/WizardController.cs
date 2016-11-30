@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using CascadeFinance.Services;
 using CascadeFinance.Plaid.Request;
+using CascadeFinance.Plaid.Response;
 
 namespace CascadeFinance.Controllers
 {
@@ -21,6 +22,14 @@ namespace CascadeFinance.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult SetBudget(string message)
+        {
+            Parser parser = new Parser();
+            var model = new WizardViewModel();
+            model.transactions = parser.parseTransactions(message);
+            return View(model);
         }
 
         public IActionResult AddAccount()
@@ -42,20 +51,20 @@ namespace CascadeFinance.Controllers
                 {
                     if (bank == bankAccountViewModel.Bank)
                     {
-                        if (bankAccountViewModel.ChallengeQuestion.Length == 0)
+                        if (bankAccountViewModel.ChallengeQuestion?.Length == 0)
                         {
                             throw new ArgumentNullException();
                         }
                         flag = true;
                     }
                 }
-                if (flag)
-                {
-                    PlaidClient pclient = new PlaidClient("5807c43cf5c9c9795f46a65c", _optionsAccessor.Value.PlaidSecret);
-                    Credentials cred = new Credentials(bankAccountViewModel.Username, bankAccountViewModel.Password);
-                    var response = pclient.requestAllAccountData(cred, bankAccountViewModel.Bank);
 
-                }
+                PlaidClient pclient = new PlaidClient("test_id", "test_secret");
+                Credentials cred = new Credentials(bankAccountViewModel.Username, bankAccountViewModel.Password);
+                var response = pclient.requestAllAccountData(cred, bankAccountViewModel.Bank);
+                Parser parser = new Parser();
+                IList<Transaction> transactions = parser.parseTransactions(response);
+                return (RedirectToAction("SetBudget", new { message = response }));
             }
             return View();
         }
