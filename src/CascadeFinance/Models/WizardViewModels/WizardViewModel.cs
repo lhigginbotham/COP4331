@@ -42,6 +42,10 @@ namespace CascadeFinance.Models.WizardViewModels
         [Display(Name = "Other Expenses")]
         public double OtherExpenses { get; set; }
 
+        [Required]
+        [Display(Name = "Total Budget")]
+        public double TotalExpenses { get; set; }
+
         public IList<Transaction> transactions { get; set; }
     }
 }

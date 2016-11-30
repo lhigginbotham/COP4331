@@ -39,7 +39,7 @@
                 </ul>
             </div>
             <div class="col s8 m9 l9">
-                <form asp-controller="Wizard" asp-action="Submit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <form id="wizardForm" asp-controller="Wizard" asp-action="Submit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                     <div id="incomeDir" class="tab-content">
                         <div class="large">
                             <div class="card white darken-1">
@@ -49,7 +49,7 @@
                                     <div asp-validation-summary="All"></div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input type="number" step="any" asp-for="MonthlyIncome" class="validate" />
+                                            <input type="number" step="any" asp-for="MonthlyIncome" class="validate" onChange="findTotal()"/>
                                             <label asp-for="MonthlyIncome"></label>
                                             <span asp-validation-for="MonthlyIncome"></span>
                                         </div>
@@ -82,12 +82,6 @@
                                         }
                                     </tbody>
                                 </table>
-                                <div class="offset-s10">
-                                    <button class="btn waves-effect waves-light" type="submit">
-                                        Register
-                                        <i class="mdi-content-send right"></i>
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,12 +95,13 @@
                                     <div class="row">
                                         <p>Enter your average monthly spending on housing:</p>
                                         <div class="input-field col s12">
-                                            <input type="number" step="any" asp-for="HousingExpenses" class="validate" />
+                                            <input type="number" step="any" asp-for="HousingExpenses" class="validate" onChange="findTotal()" />
                                             <label asp-for="HousingExpenses"></label>
                                             <span asp-validation-for="HousingExpenses"></span>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider"></div>
                                 <table class="responsive-table">
                                     <thead>
                                         <tr>
@@ -118,7 +113,7 @@
                                     <tbody>
                                         @foreach (var transaction in Model.transactions)
                                         {
-                                            bool? housing = @transaction.@category?.Contains("Housing");
+                                            bool? housing = @transaction.@category?.Contains("Rent");
                                             if (housing.HasValue && (housing.Value == true))
                                             {
                                                 <tr>
@@ -143,7 +138,7 @@
                                     <div class="row">
                                         <p>Enter your average monthly spending on groceries:</p>
                                         <div class="input-field col s12">
-                                            <input type="number" step="any" asp-for="GroceryExpenses" class="validate" />
+                                            <input type="number" step="any" asp-for="GroceryExpenses" class="validate" onChange="findTotal()" />
                                             <label asp-for="GroceryExpenses"></label>
                                             <span asp-validation-for="GroceryExpenses"></span>
                                         </div>
@@ -186,12 +181,13 @@
                                     <div class="row">
                                         <p>Enter your average monthly spending on essentials:</p>
                                         <div class="input-field col s12">
-                                            <input type="number" step="any" asp-for="EssentialExpenses" class="validate" />
+                                            <input type="number" step="any" asp-for="EssentialExpenses" class="validate" onChange="findTotal()"/>
                                             <label asp-for="EssentialExpenses"></label>
                                             <span asp-validation-for="EssentialExpenses"></span>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider"></div>
                                 <table class="responsive-table">
                                     <thead>
                                         <tr>
@@ -228,12 +224,13 @@
                                     <div class="row">
                                         <p>Enter your average monthly spending on expenses related to earning income:</p>
                                         <div class="input-field col s12">
-                                            <input type="number" step="any" asp-for="IncomeEarningExpenses" class="validate" />
+                                            <input type="number" step="any" asp-for="IncomeEarningExpenses" class="validate" onChange="findTotal()"/>
                                             <label asp-for="IncomeEarningExpenses"></label>
                                             <span asp-validation-for="IncomeEarningExpenses"></span>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider"></div>
                                 <table class="responsive-table">
                                     <thead>
                                         <tr>
@@ -270,12 +267,13 @@
                                     <div class="row">
                                         <p>Enter your average monthly spending on healthcare:</p>
                                         <div class="input-field col s12">
-                                            <input type="number" step="any" asp-for="HealthcareExpenses" class="validate" />
+                                            <input type="number" step="any" asp-for="HealthcareExpenses" class="validate" onChange="findTotal()"/>
                                             <label asp-for="HealthcareExpenses"></label>
                                             <span asp-validation-for="HealthcareExpenses"></span>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider"></div>
                                 <table class="responsive-table">
                                     <thead>
                                         <tr>
@@ -396,8 +394,19 @@
                                     <div class="divider"></div>
                                     <div asp-validation-summary="All"></div>
                                     <div class="row">
-                                        <p>Your current total expenses are:</p>                                        
+                                        <p>Your current total expenses are:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" readonly disabled step="any" asp-for="TotalExpenses" class="validate" />
+                                            <label asp-for="TotalExpenses"></label>
+                                            <span asp-validation-for="TotalExpenses"></span>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="offset-s10">
+                                    <button class="btn waves-effect waves-light" type="submit">
+                                        Register
+                                        <i class="mdi-content-send right"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -417,4 +426,6 @@
         </div>
     </div>
 </div>
-</div>
+<environment names="Development">
+    <script src="~/js/wizard.js"></script>
+</environment>

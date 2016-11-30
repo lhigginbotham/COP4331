@@ -24,12 +24,28 @@ namespace CascadeFinance.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult SetBudget(string message)
         {
             Parser parser = new Parser();
             var model = new WizardViewModel();
             model.transactions = parser.parseTransactions(message);
+            model.transactions.Add(new Transaction("nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy", "moPE4dE1yMHJX5pmRzwrdsekxdopLxtEKPREYo", 
+                843.12, new DateTime(2016, 11, 02, 11, 33, 0), "Advenir at Polos", false, new Dictionary<string, string>(), 
+                new List<string> { "Rent" }, "2101000"));
+            //Swap income and expenses types for sanity
+            foreach (Transaction transaction in model.transactions)
+            {
+                transaction.amount = transaction.amount * -1d;
+            }
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult SetBudget(WizardViewModel wizardViewModel, string returnUrl = null)
+        {
+
+            return View();
         }
 
         public IActionResult AddAccount()
@@ -64,6 +80,7 @@ namespace CascadeFinance.Controllers
                 var response = pclient.requestAllAccountData(cred, bankAccountViewModel.Bank);
                 Parser parser = new Parser();
                 IList<Transaction> transactions = parser.parseTransactions(response);
+                
                 return (RedirectToAction("SetBudget", new { message = response }));
             }
             return View();
