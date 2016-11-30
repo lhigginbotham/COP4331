@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,24 +12,27 @@ namespace CascadeFinance.Models.WizardViewModels
     {
         [Required]
         [Display(Name = "Username")]
-        public string Username;
+        public string Username { get; set; }
 
         [Required]
         [Display(Name = "Password")]
-        public string Password;
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
 
         [Required]
         [Display(Name = "Bank")]
-        public string Bank;
+        public string Bank { get; set; }
 
+        [Required]
         public List<SelectListItem> Banks { get; } = new List<SelectListItem>
         {
             new SelectListItem { Value = "bofa", Text = "Bank of America" },
             new SelectListItem { Value = "capone360", Text = "Capital One 360"  },
             new SelectListItem { Value = "chase", Text = "Chase" },
+            new SelectListItem { Value = "wells", Text = "Wells Fargo"},
         };
 
-        [Display(Name = "Challange Question")]
-        public string ChallangeQuestion;
+        [Display(Name = "Challenge Question")]
+        public string ChallengeQuestion { get; set; }
     }
 }

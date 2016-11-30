@@ -30,21 +30,21 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input type="password" asp-for="Password" class="validate" />
+                                <input asp-for="Password" type="password" class="validate" />
                                 <label asp-for="Password"></label>
                                 <span asp-validation-for="Password"></span>
                             </div>
                         </div>
                         <div id="mFA" class="row" style="display:none">
                             <div class="input-field col s12">
-                                <input type="password" asp-for="ChallangeQuestion" class="validate" />
-                                <label asp-for="ChallangeQuestion">Challange Question Answer</label>
-                                <span asp-validation-for="ChallangeQuestion"></span>
+                                <input type="password" asp-for="ChallengeQuestion" class="validate" />
+                                <label asp-for="ChallengeQuestion">Challenge Question Answer</label>
+                                <span asp-validation-for="ChallengeQuestion"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col offset-s.5 grid-example">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">
+                                <button class="btn waves-effect waves-light" type="submit">
                                     Submit
                                     <i class="mdi-content-send right"></i>
                                 </button>
@@ -56,3 +56,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
