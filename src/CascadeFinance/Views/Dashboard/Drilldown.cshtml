@@ -1,24 +1,237 @@
 ﻿@{
     ViewData["Title"] = "Drilldown";
 }
-<h2>@ViewData["Title"].</h2>
-
-
-
-<div class="row section">
-    <div class="col">
-        <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-        <p>You have to include jQuery and Materialize JS + CSS for the modal to work. You can include it from <a href="http://materializecss.com/getting-started.html">CDN (getting started)</a>.
-    </div>
+<div class="row">
+    <span class="right white-text">
+        <a href="#!" class="modal-action modal-close waves-effect waves-light white-text">
+            <i class="medium material-icons">close</i>
+        </a>
+    </span>
+    <h2 class="left white-text">Expenses</h2>
 </div>
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-</div>
+
+<p class="flow-text white-text">Click on each of the rows below to find out more information. If you wish to changed the allotted amounts, navigate to the Settings page.</p>
+<ul class="collapsible  grey-text darken-1" data-collapsible="accordion">
+    <!--Monthly Income Row-->
+    <li>
+        <div class="collapsible-header flow-text">
+            <div class="left">
+                <i class="material-icons">monetization_on</i>Monthly Income Left
+            </div> 
+            <div class="right light-green-text">
+                +$0.00
+            </div>
+        </div>
+        <div class="collapsible-body white">
+            <p class="flow-text">You have a monthly income of <span class="light-green-text">TOTAL_AMOUNT_HERE</span> and have spent <span class="red-text">TOTAL_AMOUNT_SPENT_HERE</span> so far this month.  </p>
+        </div>
+    </li>
+
+    <!--Rent and Morgage Row-->
+    <li>
+        <div class="collapsible-header flow-text">
+            <div class="left">
+                <i class="material-icons">home</i>Rent and Morgage Expenses
+            </div>
+            <div class="right red-text">
+                -$0.00
+            </div>
+        </div>
+        <div class="collapsible-body white">
+            <div class="row flow-text">
+                <p>You have allocated <span class="light-green-text">TOTAL_AMOUNT_HERE</span> and have spent <span class="red-text">TOTAL_AMOUNT_SPENT_HERE</span> so far this month.  </p>
+            </div>
+        </div>
+    </li>
+
+    <!--Food and Grocery Row-->
+    <li>
+        <div class="collapsible-header flow-text">
+            <div class="left">
+                <i class="material-icons">local_dining</i>Food and Grocery Expenses
+            </div> 
+            <div class="right red-text">
+                -$0.00
+            </div>
+        </div>
+        <div class="collapsible-body white">
+            <div class="row flow-text">
+                <p>You have allocated <span class="light-green-text">TOTAL_AMOUNT_HERE</span> and have spent <span class="red-text">TOTAL_AMOUNT_SPENT_HERE</span> so far this month.  </p>
+            </div>
+            <div class="row">
+                <div class="col s1"></div>
+                <div class="col s10">
+                    <!--THESE TABLE FIELDS SHOULD LIST THE EXPENSES SO FAR THIS MONTH FOR THIS SECTION -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-field="id">Name</th>
+                                <th data-field="id">Date</th>
+                                <th data-field="id">Amount</th>
+                            </tr>
+                            <tr>
+                                <td>EXAMPLE</td>
+                                <td>11/30/2016</td>
+                                <td>$0.00</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="col s1"></div>
+            </div>
+        </div>
+    </li>
+
+    <!--Essential Items Row-->
+    <li>
+        <div class="collapsible-header flow-text">
+            <div class="left">
+                <i class="material-icons">shopping_cart</i>Essential Item Expenses
+            </div> 
+            <div class="right red-text">
+                -$0.00
+            </div>
+        </div>
+        <div class="collapsible-body white">
+            <div class="row flow-text">
+                <p>You have allocated <span class="light-green-text">TOTAL_AMOUNT_HERE</span> and have spent <span class="red-text">TOTAL_AMOUNT_SPENT_HERE</span> so far this month.  </p>
+            </div>
+        </div>
+    </li>
+
+    <!--Income Earning Row-->
+    <li>
+        <div class="collapsible-header flow-text">
+            <div class="left">
+                <i class="material-icons">business_center</i>Income Earning Expenses
+            </div>
+            <div class="right red-text">
+                -$0.00
+            </div>
+        </div>
+        <div class="collapsible-body white">
+            <div class="row flow-text">
+                <p>You have allocated <span class="light-green-text">TOTAL_AMOUNT_HERE</span> and have spent <span class="red-text">TOTAL_AMOUNT_SPENT_HERE</span> so far this month.  </p>
+            </div>
+            <div class="row">
+                <div class="col s1"></div>
+                <div class="col s10">
+                    <!--THESE TABLE FIELDS SHOULD LIST THE EXPENSES SO FAR THIS MONTH FOR THIS SECTION -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-field="id">Name</th>
+                                <th data-field="id">Date</th>
+                                <th data-field="id">Amount</th>
+                            </tr>
+                            <tr>
+                                <td>EXAMPLE</td>
+                                <td>11/30/2016</td>
+                                <td>$0.00</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="col s1"></div>
+            </div>
+        </div>
+
+    </li>
+
+    <!--Healthcare Expense Row-->
+    <li>
+        <div class="collapsible-header flow-text">
+            <div class="left">
+                <i class="material-icons">favorite</i>Healthcare Expenses
+            </div>
+            <div class="right red-text"> 
+                -$0.00
+            </div>
+        </div>
+        <div class="collapsible-body white">
+            <div class="row flow-text">
+                <p>You have allocated <span class="light-green-text">TOTAL_AMOUNT_HERE</span> and have spent <span class="red-text">TOTAL_AMOUNT_SPENT_HERE</span> so far this month.  </p>
+            </div>
+            <div class="row">
+                <div class="col s1"></div>
+                <div class="col s10">
+                    <!--THESE TABLE FIELDS SHOULD LIST THE EXPENSES SO FAR THIS MONTH FOR THIS SECTION -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-field="id">Name</th>
+                                <th data-field="id">Date</th>
+                                <th data-field="id">Amount</th>
+                            </tr>
+                            <tr>
+                                <td>EXAMPLE</td>
+                                <td>11/30/2016</td>
+                                <td>$0.00</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="col s1"></div>
+            </div>
+        </div>
+
+    </li>
+
+    <!--Debts and Loans Row-->
+    <li>
+        <div class="collapsible-header flow-text">
+            <div class="left">
+                <i class="material-icons">attach_money</i>Minimum Payments on Debts and Loans
+            </div>
+            <div class="right red-text">
+                -$0.00
+            </div>
+        </div>
+        <div class="collapsible-body white">
+            <div class="row flow-text">
+                <p>You have allocated <span class="light-green-text">TOTAL_AMOUNT_HERE</span> and have spent <span class="red-text">TOTAL_AMOUNT_SPENT_HERE</span> so far this month.  </p>
+            </div>
+        </div>
+    </li>
+
+    <!--Other Expenses Row-->
+    <li>
+        <div class="collapsible-header flow-text">
+            <div class="left">
+                <i class="material-icons">add_circle</i>Other Expenses
+            </div>
+            <div class="right red-text">
+                -$0.00
+            </div>
+        </div>
+        <div class="collapsible-body white">
+            <div class="row flow-text">
+                <p>You have allocated <span class="light-green-text">TOTAL_AMOUNT_HERE</span> and have spent <span class="red-text">TOTAL_AMOUNT_SPENT_HERE</span> so far this month.  </p>
+            </div>
+            <div class="row">
+                <div class="col s1"></div>
+                <div class="col s10">
+                    <!--THESE TABLE FIELDS SHOULD LIST THE EXPENSES SO FAR THIS MONTH FOR THIS SECTION -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-field="id">Name</th>
+                                <th data-field="id">Date</th>
+                                <th data-field="id">Amount</th>
+                            </tr>
+                            <tr>
+                                <td>EXAMPLE</td>
+                                <td>11/30/2016</td>
+                                <td>$0.00</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="col s1"></div>
+            </div>
+        </div>
+
+    </li>
+
+    
+</ul>
