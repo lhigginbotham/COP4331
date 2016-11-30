@@ -37,9 +37,9 @@ namespace CascadeFinance.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Help()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "This is where help goes";
 
             return View();
         }
