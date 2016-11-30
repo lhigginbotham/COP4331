@@ -30,7 +30,8 @@ namespace CascadeFinance.Controllers
 
                 var expense = new Models.Expenses { Name ="test", Value = 100.00m, ExpenseDate =new DateTime( 2010, 1, 18), Tag = "food",  WidgetId = 1,  };
                 table.Add(expense);
-                table.SaveChanges();
+                
+                
 
 
             }
