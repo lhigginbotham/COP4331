@@ -10,5 +10,6 @@ namespace CascadeFinance.Models
     public class ApplicationUser : IdentityUser
     {
         public List<Widgets> Widget { get; set; }
+        public List<BankAccount> BankAccount { get; set; }
     }
 }
