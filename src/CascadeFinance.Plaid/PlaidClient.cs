@@ -29,5 +29,18 @@ public class PlaidClient
         return returnString.Result;
     }
 
-    
+    public string addUser(Credentials credentials, string institution)
+    {
+        var values = new Dictionary<string, string> {
+            { "client_id", client_id },
+            { "secret", secret},
+            { "username", credentials.username },
+            { "password", credentials.password },
+            { "type", institution},
+
+        };
+        Request request = new Request();
+        var returnString = request.handleRequest(values);
+        return returnString.Result;
+    }
 }

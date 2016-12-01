@@ -1,7 +1,114 @@
 ﻿@{
     ViewData["Title"] = "Settings";
 }
-<h2>@ViewData["Title"].</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+           
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m9 l10">
 
 
-<p>Main settings page.</p>
+            <!-- Budget Section-->
+            <div id="budget" class="section scrollspy grey-text text-darken-2">
+                <h3>Monthly Budget Settings</h3>
+                <p>Your current budgeted amounts for each major section. </p>
+                <table class="flow-text responsive-table">
+                    <tbody>
+                        <tr>
+                            <td><i class="material-icons">monetization_on</i>  Income</td>
+                            <td class="light-green-text">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td><i class="material-icons">home</i>  Housing</td>
+                            <td class="red-text">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td><i class="material-icons">local_dining</i>  Food</td>
+                            <td class="red-text">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td><i class="small material-icons">shopping_cart</i>  Essentials</td>
+                            <td class="red-text">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td><i class="material-icons">business_center</i>  Income Earning</td>
+                            <td class="red-text">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td><i class="material-icons">favorite</i>  Healthcare</td>
+                            <td class="red-text">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td><i class="material-icons">attach_money</i>  Debts</td>
+                            <td class="red-text">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td><i class="material-icons">add_circle</i>  Other</td>
+                            <td class="red-text">$0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col s10"></div>
+                    <div class="col s2">
+
+                        <a class="btn-floating btn-large waves-effect waves-light cyan tooltipped" data-position="left" data-delay="1" data-tooltip="Edit Budget" asp-area="" asp-controller="Account" asp-action="EditBudget"><i class="small material-icons">mode_edit</i></a>
+                    </div>
+
+                </div>
+            </div>
+            <hr />
+
+            <!--Prioritization Settings-->
+            <div id="priorities" class="section scrollspy grey-text text-darken-2">
+                <h3>Prioritization Settings</h3>
+                <p>The order in which you rank the sections you wish to pay first monetarily.</p>
+                <ol class="flow-text">
+                    <li><i class="material-icons">home</i>  Housing</li>
+                    <li><i class="material-icons">local_dining</i>  Food</li>
+                    <li><i class="small material-icons">shopping_cart</i>  Essentials</li>
+                    <li><i class="material-icons">business_center</i>  Income Earning</li>
+                    <li><i class="material-icons">favorite</i>  Healthcare</li>
+                    <li><i class="material-icons">attach_money</i>  Debts</li>
+                </ol>
+                
+                
+                <div class="row">
+                    <div class="col s10"></div>
+                    <div class="col s2">
+
+                        <a class="btn-floating btn-large waves-effect waves-light cyan tooltipped" data-position="left" data-delay="1" data-tooltip="Edit Prioritization" asp-area="" asp-controller="Account" asp-action="EditPrioritization"><i class="small material-icons">mode_edit</i></a>
+                    </div>
+
+                </div>
+            </div>
+            <hr />
+
+        </div>
+        <div class="col hide-on-small-only s2">
+            <div class="pinned">
+                <ul class="section table-of-contents">
+                    <li><a href="#budget">Budget</a></li>
+                    <li><a href="#priorities">Prioritization</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+        $('.scrollspy').scrollSpy();
+    });
+     
+
+
+</script>

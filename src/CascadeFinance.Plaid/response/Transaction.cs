@@ -15,11 +15,11 @@ namespace CascadeFinance.Plaid.Response
 
         public Meta meta;
 
-        private string name;
+        public string name { get; set; }
         private string originalDescription;
-        private List<string> category;
-        private double amount;
-        private DateTime date;
+        public List<string> category { get; set; }
+        public double amount { get; set; }
+        public DateTime date { get; set; }
         private Dictionary<string, string> type;
 
         private bool pending;

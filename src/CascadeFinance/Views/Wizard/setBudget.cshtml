@@ -1,0 +1,469 @@
+﻿@model WizardViewModel
+@{
+}
+<div class="container">
+    <div class="row" style="margin-top:0.5rem">
+        <div class="tabs-vertical">
+            <div class="col s4 m3 l3">
+                <ul class="tabs">
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#incomeDir">Income</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#housingDir">Housing</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#groceriesDir">Groceries</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#essentialsDir">Essentials</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#incomeExpensesDir">Income Expenses</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#healthcareDir">Healthcare</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#minDebtDir">Min. Debt Payments</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#otherExpensesDir">Other Expenses</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#totalDir">Total</a>
+                    </li>
+                    <li class="tab">
+                        <a class="waves-effect waves-cyan" href="#priorityDir">Prioritization</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s8 m9 l9">
+                <form id="wizardForm" asp-controller="Wizard" asp-action="SetBudget" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    <div id="incomeDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Income</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="MonthlyIncome" class="validate" onChange="findTotal()"/>
+                                            <label asp-for="MonthlyIncome"></label>
+                                            <span asp-validation-for="MonthlyIncome"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? interest = @transaction.@category?.Contains("Interest");
+                                            bool? payroll = @transaction.@category?.Contains("Payroll");
+                                            bool? venmo = @transaction.@category?.Contains("Venmo");
+                                            if (interest.HasValue && payroll.HasValue && venmo.HasValue && (interest.Value == true || payroll.Value == true
+                                                || (venmo.Value == true && @transaction.name.Contains("Cashout"))))
+                                           {
+                                            <tr>
+                                                <td>@transaction.date</td>
+                                                <td>@transaction.name</td>
+                                                <td>@transaction.amount</td>
+                                            </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="housingDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Housing</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on housing:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="HousingExpenses" class="validate" onChange="findTotal()" />
+                                            <label asp-for="HousingExpenses"></label>
+                                            <span asp-validation-for="HousingExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? housing = @transaction.@category?.Contains("Rent");
+                                            if (housing.HasValue && (housing.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="groceriesDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Groceries</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on groceries:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="GroceryExpenses" class="validate" onChange="findTotal()" />
+                                            <label asp-for="GroceryExpenses"></label>
+                                            <span asp-validation-for="GroceryExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? food = @transaction.@category?.Contains("Food and Drink");
+                                            if (food.HasValue && (food.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="essentialsDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Essentials</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on essentials:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="EssentialExpenses" class="validate" onChange="findTotal()"/>
+                                            <label asp-for="EssentialExpenses"></label>
+                                            <span asp-validation-for="EssentialExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? utilities = @transaction.@category?.Contains("Utilities");
+                                            if (utilities.HasValue && (utilities.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="incomeExpensesDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Income Earning Expenses</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on expenses related to earning income:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="IncomeEarningExpenses" class="validate" onChange="findTotal()"/>
+                                            <label asp-for="IncomeEarningExpenses"></label>
+                                            <span asp-validation-for="IncomeEarningExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? incomeExpense = @transaction.@category?.Contains("Computers and Electronics");
+                                            if (incomeExpense.HasValue && (incomeExpense.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="healthcareDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Healthcare</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on healthcare:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="HealthcareExpenses" class="validate" onChange="findTotal()"/>
+                                            <label asp-for="HealthcareExpenses"></label>
+                                            <span asp-validation-for="HealthcareExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? healthcare = @transaction.@category?.Contains("Healthcare");
+                                            if (healthcare.HasValue && (healthcare.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="minDebtDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Minimum Debt Payments</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your monthly minimum payments on any debt:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="MinDebtExpenses" class="validate" />
+                                            <label asp-for="MinDebtExpenses"></label>
+                                            <span asp-validation-for="MinDebtExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? debt = @transaction.@category?.Contains("Debt");
+                                            if (debt.HasValue && (debt.Value == true))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="otherExpensesDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Other Expenses</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Enter your average monthly spending on other expenses:</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" step="any" asp-for="OtherExpenses" class="validate" />
+                                            <label asp-for="OtherExpenses"></label>
+                                            <span asp-validation-for="OtherExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <table class="responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="name">Item Name</th>
+                                            <th data-field="price">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var transaction in Model.transactions)
+                                        {
+                                            bool? venmo = @transaction.@category?.Contains("Venmo");
+                                            if (@transaction.category == null || venmo.HasValue && (venmo.Value == true && @transaction.name.Contains("Payment")))
+                                            {
+                                                <tr>
+                                                    <td>@transaction.date</td>
+                                                    <td>@transaction.name</td>
+                                                    <td>@transaction.amount</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="totalDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Total Expenses</span>
+                                    <div class="divider"></div>
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="row">
+                                        <p>Your total remaing funds are (Income - Expenses):</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" readonly disabled step="any" asp-for="TotalExpenses" class="validate" />
+                                            <label asp-for="TotalExpenses"></label>
+                                            <span asp-validation-for="TotalExpenses"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="priorityDir" class="tab-content">
+                        <div class="large">
+                            <div class="card white darken-1">
+                                <div class="card-content cyan-text">
+                                    <span class="card-title">Prioritization</span>
+                                    <div class="divider"></div>
+                                    <div class="row">
+                                        <p>Enter the order you would like to pay these expenses (1 - 7):</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="1" step="any" asp-for="HousingPriority" class="validate" />
+                                            <label asp-for="HousingPriority"></label>
+                                            <span asp-validation-for="HousingPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="2" step="any" asp-for="GroceryPriority" class="validate" />
+                                            <label asp-for="GroceryPriority"></label>
+                                            <span asp-validation-for="GroceryPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="3" step="any" asp-for="EssentialPriority" class="validate" />
+                                            <label asp-for="EssentialPriority"></label>
+                                            <span asp-validation-for="EssentialPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="4" step="any" asp-for="IncomeEarningPriority" class="validate" />
+                                            <label asp-for="IncomeEarningPriority"></label>
+                                            <span asp-validation-for="IncomeEarningPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="5" step="any" asp-for="HealthcarePriority" class="validate" />
+                                            <label asp-for="HealthcarePriority"></label>
+                                            <span asp-validation-for="HealthcarePriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="6" step="any" asp-for="MinDebtPriority" class="validate" />
+                                            <label asp-for="MinDebtPriority"></label>
+                                            <span asp-validation-for="MinDebtPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="7" step="any" asp-for="OtherPriority" class="validate" />
+                                            <label asp-for="OtherPriority"></label>
+                                            <span asp-validation-for="OtherPriority"></span>
+                                        </div>
+                                    </div>
+                                    <div class="offset-s10">
+                                        <button class="btn waves-effect waves-light" type="submit">
+                                            Submit
+                                            <i class="mdi-content-send right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<environment names="Development">
+    <script src="~/js/wizard.js"></script>
+</environment>
