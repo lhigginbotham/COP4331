@@ -67,7 +67,7 @@ namespace CascadeFinance.Controllers
                 new Models.Widgets { WidgetId = 0, Name = "Health", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
                 new Models.Widgets { WidgetId = 0, Name = "Debts", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 }
             };
-
+            //[858.12, 80, 200, 200, 60, 553, 233.45]
             /* Store data in view-accessible variable (global) !!! */
             ViewData["Data"] = widgets;
 
