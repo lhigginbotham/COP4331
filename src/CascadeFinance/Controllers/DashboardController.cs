@@ -40,9 +40,17 @@ namespace CascadeFinance.Controllers
             
         }
         public IActionResult VisualAnalytics()
-
-
         {
+            /* Create feaux data */
+            Models.Widgets[] widgets = new Models.Widgets[]
+            {
+                new Models.Widgets { WidgetId = 0, Name = "Potatoes", Priority = 1, Total = 100, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Tomatoes", Priority = 2, Total = 50, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Beans", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 }
+            };
+
+            /* Store data in view-accessible variable (global) !!! */
+            ViewData["Data"] = widgets;
 
             return View();
         }
