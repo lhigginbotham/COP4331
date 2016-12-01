@@ -1,7 +1,224 @@
 ﻿@{
     ViewData["Title"] = "Dashboard";
 }
-<h2>@ViewData["Title"].</h2>
 
+<div id="partialViewContainer"></div>
+<div class="container"><br />
+    <div class="row">
+        <div class="col s11">
+            <h4 class="cyan-text">Monthly Budget Breakdown</h4>
+            <p class="grey-text">For more information about your expenses, click the circular button to the right.</p>
+        </div>
+        <div class="col s1">
+            <a class="btn-floating btn-large waves-effect waves-light cyan" href="#IncomeModal"><i class="small material-icons">info_outline</i></a>
+        </div>
+    </div>
+  
+    
+    
+    
+    <!-- FIRST ROW -->
+    <div class="row">
+       
+        <!-- Monthly Income-->    
+        <div class="col s2">
+                <div class="card horizontal red lighten-3 white-text">
+                    <div class="card-content ">
+                            <p>INCOME</p>
+                            
+                        <span class="card-title">$0.00</span>
 
-<p>Main dashboard after succesfull login </p>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col s3">
+            <p class="center-align ">
+                <img src="~/images/arrow_left_long.png" width="80%" height="auto" />
+            </p>
+        </div>
+            
+        <!--Rent/ Morgage Expenses-->
+            <div class="col s2">
+                <div class="card horizontal red lighten-3 white-text">
+                    <div class="card-content ">
+                        <p >HOUSING </p>
+                        <span class="card-title">-$0.00</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s3">
+                    <p class="center-align ">
+                        <img src="~/images/arrow_left_long.png" width="80%" height="auto" />
+                    </p>
+            </div>
+
+            <!--Food and Gorcery Expenses-->
+            <div class="col s2">
+                <div class="card horizontal red lighten-3 white-text">
+                    <div class="card-content ">
+                        <p>FOOD</p>
+                        <span class="card-title">-$0.00</span>
+
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    
+    <!-- 1st ARROW ROW -->
+    <div class="row">
+        <div class="col s2">
+        </div>
+        <div class="col s8">
+        </div>
+        <div class="col s2">
+            <div class="center-align ">
+                <img src="~/images/arrow_down_ss.png" width="30%" height="auto" />
+            </div>
+        </div>
+    </div>
+
+    <!-- 2nd CARD ROW-->
+    <div class="row">
+
+        <!--Other Extraneous Expenses-->
+        <div class="col s2">
+            <div class="card horizontal red lighten-3 white-text">
+                <div class="card-content ">
+                    <p>OTHER</p>
+                    <span class="card-title">-$0.00</span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col s2">
+            <p class="center-align ">
+                <img src="~/images/arrow_right_mid.png" width="70%" height="auto" />
+            </p>
+        </div>
+
+        <!-- Total Leftover Amount-->
+        <div class="col s4">
+            <div class="card light-green lighten-1 white-text">
+                <div class="card-content ">
+                    <p>LEFTOVER AMOUNT</p>
+                    <span class="card-title center-align"><h3 class="">$0.00</h3></span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col s2">
+        </div>
+
+        <!--Essential Item Expenses-->
+        <div class="col s2">
+            <div class="card horizontal red lighten-3 white-text">
+                <div class="card-content ">
+                    <p>ESSENTIALS</p>
+                    <span class="card-title">-$0.00</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--2nd ARROW ROW-->
+    <div class="row">
+        <div class="col s2">
+            <div class="center-align ">
+                <img src="~/images/arrow_us_ss.png" width="30%" height="auto" />
+            </div>
+        </div>
+        <div class="col s8">
+        </div>
+        <div class="col s2">
+            <div class="center-align ">
+                <img src="~/images/arrow_down_ss.png" width="30%" height="auto" />
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM ROW-->
+    <div class="row">
+
+        <!--Minimum Payments on Debts/Loans-->
+        <div class="col s2">
+            <div class="card horizontal red lighten-3 white-text">
+                <div class="card-content ">
+                    <p>DEBTS</p>
+                    <span class="card-title">-$0.00</span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col s3">
+            <p class="center-align ">
+                <img src="~/images/arrow_actual_left_long.png" width="80%" height="auto" />
+            </p>
+        </div>
+
+        <!--Healthcare Expenses-->
+        <div class="col s2">
+            <div class="card horizontal red lighten-3 white-text">
+                <div class="card-content ">
+                    <p>HEALTH</p>
+                    <span class="card-title">-$0.00</span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col s3">
+            <p class="center-align ">
+                <img src="~/images/arrow_actual_left_long.png" width="80%" height="auto" />
+            </p>
+        </div>
+
+        <!-- Income Earning Expenses-->
+        <div class="col s2">
+            <div class="card horizontal red lighten-3 white-text">
+                <div class="card-content ">
+                    <p>EARNING</p>
+                    <span class="card-title">-$0.00</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="IncomeModal" class="modal cyan lighten-1">
+        <div class="modal-content">
+            
+            @Html.Partial("Drilldown")
+        </div>
+
+    </div>
+
+</div>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        //$('.modal-trigger').leanModal();
+        $('#IncomeModal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+            starting_top: '4%', // Starting top style attribute
+            ending_top: '10%' // Ending top style attribute
+
+        }
+            );
+        $('.collapsible').collapsible();
+    });
+
+    
+</script>
