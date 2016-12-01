@@ -63,7 +63,7 @@ namespace CascadeFinance.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction(nameof(DashboardController.Dashboard), "Dashboard");
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -149,8 +149,10 @@ namespace CascadeFinance.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(HomeController.Logout), "Home");
         }
+
+  
 
         //
         // POST: /Account/ExternalLogin

@@ -18,6 +18,8 @@
         <link rel="stylesheet" href="~/lib/materialize/css/materialize.min.css" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
+    <script type="text/javascript" src="~/lib/Chart.js/dist/Chart.js"></script>
 </head>
 <body>
         <a name="top"></a>
@@ -66,6 +68,7 @@
         
         <script src="~/lib/materialize/js/materialize.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/Chart.js/dist/Chart.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -77,6 +80,7 @@
         </script>
         <script src="~/lib/materialize/js/materialize.min.js"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/lib/Chart.js/dist/Chart.js"></script>
     </environment>
 
     @RenderSection("scripts", required: false)
