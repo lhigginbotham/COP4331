@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using CascadeFinance.Data;
 
-namespace CascadeFinance.Data.Migrations
+namespace CascadeFinance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160914170731_coreMigration")]
-    partial class coreMigration
+    [Migration("20161201061754_DefaultDatabase")]
+    partial class DefaultDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,6 +63,31 @@ namespace CascadeFinance.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("CascadeFinance.Models.BankAccount", b =>
+                {
+                    b.Property<int>("BankAccountId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
+
+                    b.Property<string>("Institution")
+                        .IsRequired();
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.Property<string>("Username")
+                        .IsRequired();
+
+                    b.HasKey("BankAccountId");
+
+                    b.HasIndex("ApplicationUserId1");
+
+                    b.ToTable("BankAccounts");
                 });
 
             modelBuilder.Entity("CascadeFinance.Models.Expenses", b =>
@@ -217,6 +242,13 @@ namespace CascadeFinance.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CascadeFinance.Models.BankAccount", b =>
+                {
+                    b.HasOne("CascadeFinance.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("BankAccount")
+                        .HasForeignKey("ApplicationUserId1");
                 });
 
             modelBuilder.Entity("CascadeFinance.Models.Expenses", b =>

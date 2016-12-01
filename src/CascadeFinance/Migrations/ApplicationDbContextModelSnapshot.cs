@@ -5,13 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using CascadeFinance.Data;
 
-namespace CascadeFinance.Data.Migrations
+namespace CascadeFinance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161009184917_Widget-User")]
-    partial class WidgetUser
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
@@ -63,6 +62,31 @@ namespace CascadeFinance.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("CascadeFinance.Models.BankAccount", b =>
+                {
+                    b.Property<int>("BankAccountId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
+
+                    b.Property<string>("Institution")
+                        .IsRequired();
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.Property<string>("Username")
+                        .IsRequired();
+
+                    b.HasKey("BankAccountId");
+
+                    b.HasIndex("ApplicationUserId1");
+
+                    b.ToTable("BankAccounts");
                 });
 
             modelBuilder.Entity("CascadeFinance.Models.Expenses", b =>
@@ -217,6 +241,13 @@ namespace CascadeFinance.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CascadeFinance.Models.BankAccount", b =>
+                {
+                    b.HasOne("CascadeFinance.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("BankAccount")
+                        .HasForeignKey("ApplicationUserId1");
                 });
 
             modelBuilder.Entity("CascadeFinance.Models.Expenses", b =>
