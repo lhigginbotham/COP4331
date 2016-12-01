@@ -90,6 +90,16 @@ namespace CascadeFinance.Controllers
             return View();
         }
 
+        public IActionResult EditBudget()
+        {
+            return View();
+        }
+
+        public IActionResult EditPrioritization()
+        {
+            return View();
+        }
+
         //
         // GET: /Account/Register
         [HttpGet]
