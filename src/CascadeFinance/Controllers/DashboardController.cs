@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CascadeFinance.Data;
 using Microsoft.AspNetCore.Identity;
 using CascadeFinance.Models;
+using CascadeFinance.Models.Dashboard;
 
 namespace CascadeFinance.Controllers
 {
@@ -31,10 +32,14 @@ namespace CascadeFinance.Controllers
             {
                 var table = _context.Expenses;
 
-                var expense = new Models.Expenses { Name ="test", Value = 100.00m, ExpenseDate =new DateTime( 2010, 1, 18), Tag = "food",  WidgetId = 1,  };
-                table.Add(expense);
-                
-                
+                var model = new DrilldownViewModel();
+
+                model.MonthlyIncome = 4000.10;
+
+
+                ViewData["MonthlyIncome"] = model.MonthlyIncome;
+
+
 
 
             }
