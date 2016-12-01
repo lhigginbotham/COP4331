@@ -31,16 +31,19 @@
                                                 <span asp-validation-for="Password" class="text-danger red-text"></span>
                                             </div>
                                         </div>
+                                        <p>
+                                           
+                                                <a asp-action="ForgotPassword">Forgot your password?</a>
+                                           
+                                        </p>
                                         <div class="form-group">
                                             <div class="center">
                                                 <button type="submit" class="waves-effect waves-light btn-large light-green">Login</button>
-                                                <a class="waves-effect waves-light btn-large light-green" asp-area="" asp-controller="Account" asp-action="Register">Register now</a>
                                             </div>
-                   
-                                            </div>
+                                        </div>
                                         <p>
-                                            <div class="center">
-                                                <a asp-action="ForgotPassword">Forgot your password?</a>
+                                            <div>
+                                                <a asp-action="Register">Register Here.</a>
                                             </div>
                                         </p>
                                     </form>
