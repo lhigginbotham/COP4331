@@ -46,6 +46,34 @@ namespace CascadeFinance.Models.WizardViewModels
         [Display(Name = "Total Budget")]
         public double TotalExpenses { get; set; }
 
+        [Required]
+        [Display(Name = "Housing Priority")]
+        public int HousingPriority { get; set; }
+
+        [Required]
+        [Display(Name = "Grocery Priority")]
+        public int GroceryPriority { get; set; }
+
+        [Required]
+        [Display(Name = "Essential Priority")]
+        public int EssentialPriority { get; set; }
+
+        [Required]
+        [Display(Name = "Income Earning Priority")]
+        public int IncomeEarningPriority { get; set; }
+
+        [Required]
+        [Display(Name = "Healthcare Priority")]
+        public int HealthcarePriority { get; set; }
+
+        [Required]
+        [Display(Name = "Minimum Debt Priority")]
+        public int MinDebtPriority { get; set; }
+
+        [Required]
+        [Display(Name = "Other Priority")]
+        public int OtherPriority { get; set; }
+
         public IList<Transaction> transactions { get; set; }
     }
 }

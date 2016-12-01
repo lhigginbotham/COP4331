@@ -39,7 +39,7 @@
                 </ul>
             </div>
             <div class="col s8 m9 l9">
-                <form id="wizardForm" asp-controller="Wizard" asp-action="Submit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <form id="wizardForm" asp-controller="Wizard" asp-action="SetBudget" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                     <div id="incomeDir" class="tab-content">
                         <div class="large">
                             <div class="card white darken-1">
@@ -394,19 +394,13 @@
                                     <div class="divider"></div>
                                     <div asp-validation-summary="All"></div>
                                     <div class="row">
-                                        <p>Your current total expenses are:</p>
+                                        <p>Your total remaing funds are (Income - Expenses):</p>
                                         <div class="input-field col s12">
                                             <input type="number" readonly disabled step="any" asp-for="TotalExpenses" class="validate" />
                                             <label asp-for="TotalExpenses"></label>
                                             <span asp-validation-for="TotalExpenses"></span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="offset-s10">
-                                    <button class="btn waves-effect waves-light" type="submit">
-                                        Register
-                                        <i class="mdi-content-send right"></i>
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -417,6 +411,50 @@
                                 <div class="card-content cyan-text">
                                     <span class="card-title">Prioritization</span>
                                     <div class="divider"></div>
+                                    <div class="row">
+                                        <p>Enter the order you would like to pay these expenses (1 - 7):</p>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="1" step="any" asp-for="HousingPriority" class="validate" />
+                                            <label asp-for="HousingPriority"></label>
+                                            <span asp-validation-for="HousingPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="2" step="any" asp-for="GroceryPriority" class="validate" />
+                                            <label asp-for="GroceryPriority"></label>
+                                            <span asp-validation-for="GroceryPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="3" step="any" asp-for="EssentialPriority" class="validate" />
+                                            <label asp-for="EssentialPriority"></label>
+                                            <span asp-validation-for="EssentialPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="4" step="any" asp-for="IncomeEarningPriority" class="validate" />
+                                            <label asp-for="IncomeEarningPriority"></label>
+                                            <span asp-validation-for="IncomeEarningPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="5" step="any" asp-for="HealthcarePriority" class="validate" />
+                                            <label asp-for="HealthcarePriority"></label>
+                                            <span asp-validation-for="HealthcarePriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="6" step="any" asp-for="MinDebtPriority" class="validate" />
+                                            <label asp-for="MinDebtPriority"></label>
+                                            <span asp-validation-for="MinDebtPriority"></span>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" value="7" step="any" asp-for="OtherPriority" class="validate" />
+                                            <label asp-for="OtherPriority"></label>
+                                            <span asp-validation-for="OtherPriority"></span>
+                                        </div>
+                                    </div>
+                                    <div class="offset-s10">
+                                        <button class="btn waves-effect waves-light" type="submit">
+                                            Submit
+                                            <i class="mdi-content-send right"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
