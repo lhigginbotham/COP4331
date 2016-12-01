@@ -44,7 +44,8 @@
       "type": "build"
     },
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.1",
-    "CascadeFinance.Plaid": "1.0.0-*"
+    "CascadeFinance.Plaid": "1.0.0-*",
+    "Microsoft.AspNetCore.Session": "1.0.0"
   },
 
   "commands": {

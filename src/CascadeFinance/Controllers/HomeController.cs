@@ -25,6 +25,7 @@ namespace CascadeFinance.Controllers
             {
                 secret = "test_secret";
             }
+            secret = "test_secret";
             TestPost test = new TestPost();
             test.PostRequest(secret);
             return View();
