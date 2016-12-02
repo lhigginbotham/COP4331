@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using CascadeFinance.Models;
 using CascadeFinance.Models.AccountViewModels;
 using CascadeFinance.Services;
+using CascadeFinance.Data;
 
 namespace CascadeFinance.Controllers
 {
@@ -22,19 +23,22 @@ namespace CascadeFinance.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _context = context;
         }
 
         //
@@ -97,7 +101,86 @@ namespace CascadeFinance.Controllers
 
         public IActionResult EditPrioritization()
         {
-            return View();
+            var user = _userManager.GetUserId(User);
+            EditPrioritizationViewModel model = new EditPrioritizationViewModel();
+            using (var db = _context)
+            {
+                var widgets = db.Widgets
+                    .Where(b => b.ApplicationUserId == user)
+                    .ToList();
+                foreach(Widgets widget in widgets)
+                {
+                    if(widget.Name == "Housing")
+                    {
+                        model.HousingPriority = widget.Priority;
+                    }
+                    if (widget.Name == "Grocery")
+                    {
+                        model.GroceryPriority = widget.Priority;
+                    }
+                    if (widget.Name == "Essentials")
+                    {
+                        model.EssentialPriority = widget.Priority;
+                    }
+                    if (widget.Name == "Income Earning")
+                    {
+                        model.IncomeEarningPriority = widget.Priority;
+                    }
+                    if (widget.Name == "Healthcare")
+                    {
+                        model.HealthcarePriority = widget.Priority;
+                    }
+                    if (widget.Name == "Minimum Debt Payments")
+                    {
+                        model.MinDebtPriority = widget.Priority;
+                    }
+                }
+            }
+            return View(model);
+        }
+
+        public IActionResult EditPrioritizationSubmit(EditPrioritizationViewModel editPrioritizationViewModel, string returnUrl = null)
+        {
+            var user = _userManager.GetUserId(User);
+
+            using (var db = _context)
+            {
+                var widgets = db.Widgets
+                    .Where(b => b.ApplicationUserId == user)
+                    .ToList();
+                foreach(Widgets widget in widgets)
+                {
+                    if (widget.Name == "Housing")
+                    {
+                        widget.Priority = editPrioritizationViewModel.HousingPriority;
+                        
+                    }
+                    if (widget.Name == "Grocery")
+                    {
+                        widget.Priority = editPrioritizationViewModel.GroceryPriority;
+                    }
+                    if (widget.Name == "Essentials")
+                    {
+                        widget.Priority = editPrioritizationViewModel.EssentialPriority;
+                    }
+                    if (widget.Name == "Income Earning")
+                    {
+                        widget.Priority = editPrioritizationViewModel.IncomeEarningPriority;
+                    }
+                    if (widget.Name == "Healthcare")
+                    {
+                        widget.Priority = editPrioritizationViewModel.HealthcarePriority;
+                    }
+                    if (widget.Name == "Minimum Debt Payments")
+                    {
+                        widget.Priority = editPrioritizationViewModel.MinDebtPriority;
+                    }
+                }
+                db.SaveChanges();
+
+            }
+
+            return RedirectToAction("EditPrioritization");
         }
 
         //
@@ -132,7 +215,7 @@ namespace CascadeFinance.Controllers
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction(nameof(WizardController.AddAccount), "Wizard");
                 }
                 AddErrors(result);
             }

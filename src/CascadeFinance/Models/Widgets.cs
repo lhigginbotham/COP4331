@@ -21,7 +21,7 @@ namespace CascadeFinance.Models
         public decimal Total { get; set; }
 
         //Foreign Key
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
 
