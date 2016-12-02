@@ -101,15 +101,12 @@ namespace CascadeFinance.Controllers
 
         public IActionResult EditPrioritization()
         {
-            var test = HttpContext.User;
-            var user = GetCurrentUserAsync();
-            var test2 = _userManager.GetUserId(User);
-            user.Wait();
+            var user = _userManager.GetUserId(User);
             EditPrioritizationViewModel model = new EditPrioritizationViewModel();
             using (var db = _context)
             {
                 var widgets = db.Widgets
-                    .Where(b => b.ApplicationUserId == user.Id)
+                    .Where(b => b.ApplicationUserId == user)
                     .ToList();
                 foreach(Widgets widget in widgets)
                 {

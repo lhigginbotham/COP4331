@@ -59,7 +59,7 @@ namespace CascadeFinance.Controllers
         [HttpPost]
         public async Task<IActionResult> SetBudget(WizardViewModel wizardViewModel, string returnUrl = null)
         {
-            var user = GetCurrentUserAsync();
+            var user = _userManager.GetUserId(User);
 
             string response = HttpContext.Session.GetString("transactions");
             Parser parser = new Parser();
@@ -69,14 +69,14 @@ namespace CascadeFinance.Controllers
                 new List<string> { "Rent" }, "2101000"));
             using (var db = _context)
             {
-                Widgets incomeWidget = new Widgets { Name = "Income", Priority = 0, Total = (decimal)wizardViewModel.MonthlyIncome, ApplicationUserId = user.Id };
-                Widgets housingWidget = new Widgets { Name = "Housing", Priority = wizardViewModel.HousingPriority, Total = (decimal)wizardViewModel.HousingExpenses, ApplicationUserId = user.Id };
-                Widgets groceryWidget = new Widgets { Name = "Grocery", Priority = wizardViewModel.GroceryPriority, Total = (decimal)wizardViewModel.GroceryExpenses, ApplicationUserId = user.Id };
-                Widgets essentialWidget = new Widgets { Name = "Essentials", Priority = wizardViewModel.EssentialPriority, Total = (decimal)wizardViewModel.EssentialExpenses, ApplicationUserId = user.Id };
-                Widgets incomeEarningWidget = new Widgets { Name = "Income Earning", Priority = wizardViewModel.IncomeEarningPriority, Total = (decimal)wizardViewModel.IncomeEarningExpenses, ApplicationUserId = user.Id };
-                Widgets healthcareWidget = new Widgets { Name = "Healthcare", Priority = wizardViewModel.HealthcarePriority, Total = (decimal)wizardViewModel.HealthcareExpenses, ApplicationUserId = user.Id };
-                Widgets minDebtWidget = new Widgets { Name = "Minimum Debt Payments", Priority = wizardViewModel.MinDebtPriority, Total = (decimal)wizardViewModel.MinDebtExpenses, ApplicationUserId = user.Id };
-                Widgets otherWidget = new Widgets { Name = "Other Expenses", Priority = 7, Total = (decimal)wizardViewModel.OtherExpenses, ApplicationUserId = user.Id };
+                Widgets incomeWidget = new Widgets { Name = "Income", Priority = 0, Total = (decimal)wizardViewModel.MonthlyIncome, ApplicationUserId = user };
+                Widgets housingWidget = new Widgets { Name = "Housing", Priority = wizardViewModel.HousingPriority, Total = (decimal)wizardViewModel.HousingExpenses, ApplicationUserId = user };
+                Widgets groceryWidget = new Widgets { Name = "Grocery", Priority = wizardViewModel.GroceryPriority, Total = (decimal)wizardViewModel.GroceryExpenses, ApplicationUserId = user };
+                Widgets essentialWidget = new Widgets { Name = "Essentials", Priority = wizardViewModel.EssentialPriority, Total = (decimal)wizardViewModel.EssentialExpenses, ApplicationUserId = user };
+                Widgets incomeEarningWidget = new Widgets { Name = "Income Earning", Priority = wizardViewModel.IncomeEarningPriority, Total = (decimal)wizardViewModel.IncomeEarningExpenses, ApplicationUserId = user };
+                Widgets healthcareWidget = new Widgets { Name = "Healthcare", Priority = wizardViewModel.HealthcarePriority, Total = (decimal)wizardViewModel.HealthcareExpenses, ApplicationUserId = user };
+                Widgets minDebtWidget = new Widgets { Name = "Minimum Debt Payments", Priority = wizardViewModel.MinDebtPriority, Total = (decimal)wizardViewModel.MinDebtExpenses, ApplicationUserId = user };
+                Widgets otherWidget = new Widgets { Name = "Other Expenses", Priority = 7, Total = (decimal)wizardViewModel.OtherExpenses, ApplicationUserId = user };
 
                 db.Widgets.Add(incomeWidget);
                 db.Widgets.Add(housingWidget);
@@ -92,7 +92,7 @@ namespace CascadeFinance.Controllers
             using (var db = _readContext)
             { 
                 var widgets = db.Widgets
-                    .Where(b => b.ApplicationUserId == user.Id)
+                    .Where(b => b.ApplicationUserId == user)
                     .ToList();
                 Widgets incomeWidget = widgets.Find(x => x.Name.Contains("Income"));
                 Widgets housingWidget = widgets.Find(x => x.Name.Contains("Housing"));
