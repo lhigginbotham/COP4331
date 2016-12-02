@@ -139,6 +139,50 @@ namespace CascadeFinance.Controllers
             return View(model);
         }
 
+        public IActionResult EditPrioritizationSubmit(EditPrioritizationViewModel editPrioritizationViewModel, string returnUrl = null)
+        {
+            var user = _userManager.GetUserId(User);
+
+            using (var db = _context)
+            {
+                var widgets = db.Widgets
+                    .Where(b => b.ApplicationUserId == user)
+                    .ToList();
+                foreach(Widgets widget in widgets)
+                {
+                    if (widget.Name == "Housing")
+                    {
+                        widget.Priority = editPrioritizationViewModel.HousingPriority;
+                        
+                    }
+                    if (widget.Name == "Grocery")
+                    {
+                        widget.Priority = editPrioritizationViewModel.GroceryPriority;
+                    }
+                    if (widget.Name == "Essentials")
+                    {
+                        widget.Priority = editPrioritizationViewModel.EssentialPriority;
+                    }
+                    if (widget.Name == "Income Earning")
+                    {
+                        widget.Priority = editPrioritizationViewModel.IncomeEarningPriority;
+                    }
+                    if (widget.Name == "Healthcare")
+                    {
+                        widget.Priority = editPrioritizationViewModel.HealthcarePriority;
+                    }
+                    if (widget.Name == "Minimum Debt Payments")
+                    {
+                        widget.Priority = editPrioritizationViewModel.MinDebtPriority;
+                    }
+                }
+                db.SaveChanges();
+
+            }
+
+            return RedirectToAction("EditPrioritization");
+        }
+
         //
         // GET: /Account/Register
         [HttpGet]

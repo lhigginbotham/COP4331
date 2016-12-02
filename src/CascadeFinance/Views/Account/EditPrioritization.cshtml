@@ -7,7 +7,7 @@
         <div class="large">
             <div class="card white darken-1">
                 <div class="card-content">
-                    <form asp-controller="Account" asp-action="EditPrioritization" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    <form asp-controller="Account" asp-action="EditPrioritizationSubmit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                         <div class="row">
                             <p>Enter the order you would like to pay these expenses (1 - 6):</p>
                             <div class="input-field col s12">
@@ -21,22 +21,22 @@
                                 <span asp-validation-for="GroceryPriority"></span>
                             </div>
                             <div class="input-field col s12">
-                                <input type="number" value="3" step="any" asp-for="EssentialPriority" class="validate" />
+                                <input type="number" value="@Model.EssentialPriority" step="any" asp-for="EssentialPriority" class="validate" />
                                 <label asp-for="EssentialPriority"></label>
                                 <span asp-validation-for="EssentialPriority"></span>
                             </div>
                             <div class="input-field col s12">
-                                <input type="number" value="4" step="any" asp-for="IncomeEarningPriority" class="validate" />
+                                <input type="number" value="@Model.IncomeEarningPriority" step="any" asp-for="IncomeEarningPriority" class="validate" />
                                 <label asp-for="IncomeEarningPriority"></label>
                                 <span asp-validation-for="IncomeEarningPriority"></span>
                             </div>
                             <div class="input-field col s12">
-                                <input type="number" value="5" step="any" asp-for="HealthcarePriority" class="validate" />
+                                <input type="number" value="@Model.HealthcarePriority" step="any" asp-for="HealthcarePriority" class="validate" />
                                 <label asp-for="HealthcarePriority"></label>
                                 <span asp-validation-for="HealthcarePriority"></span>
                             </div>
                             <div class="input-field col s12">
-                                <input type="number" value="6" step="any" asp-for="MinDebtPriority" class="validate" />
+                                <input type="number" value="@Model.MinDebtPriority" step="any" asp-for="MinDebtPriority" class="validate" />
                                 <label asp-for="MinDebtPriority"></label>
                                 <span asp-validation-for="MinDebtPriority"></span>
                             </div>
