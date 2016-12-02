@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using CascadeFinance.Models;
 using CascadeFinance.Models.AccountViewModels;
 using CascadeFinance.Services;
+using CascadeFinance.Data;
 
 namespace CascadeFinance.Controllers
 {
@@ -22,19 +23,22 @@ namespace CascadeFinance.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _context = context;
         }
 
         //
@@ -97,7 +101,45 @@ namespace CascadeFinance.Controllers
 
         public IActionResult EditPrioritization()
         {
-            return View();
+            var test = HttpContext.User;
+            var user = GetCurrentUserAsync();
+            var test2 = _userManager.GetUserId(User);
+            user.Wait();
+            EditPrioritizationViewModel model = new EditPrioritizationViewModel();
+            using (var db = _context)
+            {
+                var widgets = db.Widgets
+                    .Where(b => b.ApplicationUserId == user.Id)
+                    .ToList();
+                foreach(Widgets widget in widgets)
+                {
+                    if(widget.Name == "Housing")
+                    {
+                        model.HousingPriority = widget.Priority;
+                    }
+                    if (widget.Name == "Grocery")
+                    {
+                        model.GroceryPriority = widget.Priority;
+                    }
+                    if (widget.Name == "Essentials")
+                    {
+                        model.EssentialPriority = widget.Priority;
+                    }
+                    if (widget.Name == "Income Earning")
+                    {
+                        model.IncomeEarningPriority = widget.Priority;
+                    }
+                    if (widget.Name == "Healthcare")
+                    {
+                        model.HealthcarePriority = widget.Priority;
+                    }
+                    if (widget.Name == "Minimum Debt Payments")
+                    {
+                        model.MinDebtPriority = widget.Priority;
+                    }
+                }
+            }
+            return View(model);
         }
 
         //
