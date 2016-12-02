@@ -33,15 +33,11 @@ namespace CascadeFinance.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
         public IActionResult Help()
         {
-            ViewData["Message"] = "This is where help goes";
-
             return View();
         }
 
