@@ -76,7 +76,7 @@ namespace CascadeFinance.Controllers
                 Widgets incomeEarningWidget = new Widgets { Name = "Income Earning", Priority = wizardViewModel.IncomeEarningPriority, Total = (decimal)wizardViewModel.IncomeEarningExpenses, ApplicationUserId = user.Id };
                 Widgets healthcareWidget = new Widgets { Name = "Healthcare", Priority = wizardViewModel.HealthcarePriority, Total = (decimal)wizardViewModel.HealthcareExpenses, ApplicationUserId = user.Id };
                 Widgets minDebtWidget = new Widgets { Name = "Minimum Debt Payments", Priority = wizardViewModel.MinDebtPriority, Total = (decimal)wizardViewModel.MinDebtExpenses, ApplicationUserId = user.Id };
-                Widgets otherWidget = new Widgets { Name = "Other Expenses", Priority = wizardViewModel.OtherPriority, Total = (decimal)wizardViewModel.OtherExpenses, ApplicationUserId = user.Id };
+                Widgets otherWidget = new Widgets { Name = "Other Expenses", Priority = 7, Total = (decimal)wizardViewModel.OtherExpenses, ApplicationUserId = user.Id };
 
                 db.Widgets.Add(incomeWidget);
                 db.Widgets.Add(housingWidget);

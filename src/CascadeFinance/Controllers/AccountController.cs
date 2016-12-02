@@ -132,7 +132,7 @@ namespace CascadeFinance.Controllers
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction(nameof(WizardController.AddAccount), "Wizard");
                 }
                 AddErrors(result);
             }
