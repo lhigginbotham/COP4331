@@ -8,8 +8,8 @@ using CascadeFinance.Data;
 namespace CascadeFinance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161201061754_DefaultDatabase")]
-    partial class DefaultDatabase
+    [Migration("20161202042338_AccountFix")]
+    partial class AccountFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,9 +70,7 @@ namespace CascadeFinance.Migrations
                     b.Property<int>("BankAccountId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Institution")
                         .IsRequired();
@@ -85,7 +83,7 @@ namespace CascadeFinance.Migrations
 
                     b.HasKey("BankAccountId");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("BankAccounts");
                 });
@@ -119,9 +117,7 @@ namespace CascadeFinance.Migrations
                     b.Property<int>("WidgetId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<string>("ApplicationUserId1");
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -132,7 +128,7 @@ namespace CascadeFinance.Migrations
 
                     b.HasKey("WidgetId");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Widgets");
                 });
@@ -248,7 +244,7 @@ namespace CascadeFinance.Migrations
                 {
                     b.HasOne("CascadeFinance.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("BankAccount")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("CascadeFinance.Models.Expenses", b =>
@@ -263,7 +259,7 @@ namespace CascadeFinance.Migrations
                 {
                     b.HasOne("CascadeFinance.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Widget")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

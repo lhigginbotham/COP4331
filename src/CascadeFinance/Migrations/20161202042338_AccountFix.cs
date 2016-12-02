@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CascadeFinance.Migrations
 {
-    public partial class DefaultDatabase : Migration
+    public partial class AccountFix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,8 +67,7 @@ namespace CascadeFinance.Migrations
                 {
                     BankAccountId = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGeneratedOnAdd", true),
-                    ApplicationUserId = table.Column<int>(nullable: false),
-                    ApplicationUserId1 = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     Institution = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
                     Username = table.Column<string>(nullable: false)
@@ -77,8 +76,8 @@ namespace CascadeFinance.Migrations
                 {
                     table.PrimaryKey("PK_BankAccounts", x => x.BankAccountId);
                     table.ForeignKey(
-                        name: "FK_BankAccounts_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_BankAccounts_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -90,8 +89,7 @@ namespace CascadeFinance.Migrations
                 {
                     WidgetId = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGeneratedOnAdd", true),
-                    ApplicationUserId = table.Column<int>(nullable: false),
-                    ApplicationUserId1 = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     Priority = table.Column<int>(nullable: false),
                     Total = table.Column<decimal>(nullable: false)
@@ -100,8 +98,8 @@ namespace CascadeFinance.Migrations
                 {
                     table.PrimaryKey("PK_Widgets", x => x.WidgetId);
                     table.ForeignKey(
-                        name: "FK_Widgets_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_Widgets_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -228,9 +226,9 @@ namespace CascadeFinance.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_BankAccounts_ApplicationUserId1",
+                name: "IX_BankAccounts_ApplicationUserId",
                 table: "BankAccounts",
-                column: "ApplicationUserId1");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Expenses_WidgetId",
@@ -238,9 +236,9 @@ namespace CascadeFinance.Migrations
                 column: "WidgetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Widgets_ApplicationUserId1",
+                name: "IX_Widgets_ApplicationUserId",
                 table: "Widgets",
-                column: "ApplicationUserId1");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
