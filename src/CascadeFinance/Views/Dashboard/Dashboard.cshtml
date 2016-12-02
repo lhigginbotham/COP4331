@@ -26,7 +26,7 @@
                     <div class="card-content ">
                             <p>INCOME</p>
                             
-                        <span class="card-title">$0.00</span>
+                        <span class="card-title" id="income-value">$0.00</span>
 
                     </div>
                 </div>
@@ -42,8 +42,8 @@
             <div class="col s2">
                 <div class="card horizontal red lighten-3 white-text">
                     <div class="card-content ">
-                        <p >HOUSING </p>
-                        <span class="card-title">-$0.00</span>
+                        <p id="1-name"> </p>
+                        <span class="card-title" id="1-value">-$0.00</span>
 
                     </div>
                 </div>
@@ -59,8 +59,8 @@
             <div class="col s2">
                 <div class="card horizontal red lighten-3 white-text">
                     <div class="card-content ">
-                        <p>FOOD</p>
-                        <span class="card-title">-$0.00</span>
+                        <p id="2-name"></p>
+                        <span class="card-title" id="2-value">-$0.00</span>
 
                     </div>
                 </div>
@@ -88,8 +88,8 @@
         <div class="col s2">
             <div class="card horizontal red lighten-3 white-text">
                 <div class="card-content ">
-                    <p>OTHER</p>
-                    <span class="card-title">-$0.00</span>
+                    <p>Other</p>
+                    <span class="card-title" id="7-value">-$0.00</span>
 
                 </div>
             </div>
@@ -106,7 +106,7 @@
             <div class="card light-green lighten-1 white-text">
                 <div class="card-content ">
                     <p>LEFTOVER AMOUNT</p>
-                    <span class="card-title center-align"><h3 class="">$0.00</h3></span>
+                    <span class="card-title center-align" id="remaining-value"></span>
 
                 </div>
             </div>
@@ -119,8 +119,8 @@
         <div class="col s2">
             <div class="card horizontal red lighten-3 white-text">
                 <div class="card-content ">
-                    <p>ESSENTIALS</p>
-                    <span class="card-title">-$0.00</span>
+                    <p id="3-name"></p>
+                    <span class="card-title" id="3-value">-$0.00</span>
 
                 </div>
             </div>
@@ -151,8 +151,8 @@
         <div class="col s2">
             <div class="card horizontal red lighten-3 white-text">
                 <div class="card-content ">
-                    <p>DEBTS</p>
-                    <span class="card-title">-$0.00</span>
+                    <p id="6-name"></p>
+                    <span class="card-title" id="6-value">-$0.00</span>
 
                 </div>
             </div>
@@ -168,8 +168,8 @@
         <div class="col s2">
             <div class="card horizontal red lighten-3 white-text">
                 <div class="card-content ">
-                    <p>HEALTH</p>
-                    <span class="card-title">-$0.00</span>
+                    <p id="5-name"></p>
+                    <span class="card-title" id="5-value">-$0.00</span>
 
                 </div>
             </div>
@@ -185,8 +185,8 @@
         <div class="col s2">
             <div class="card horizontal red lighten-3 white-text">
                 <div class="card-content ">
-                    <p>EARNING</p>
-                    <span class="card-title">-$0.00</span>
+                    <p id="4-name"></p>
+                    <span class="card-title" id="4-value">-$0.00</span>
 
                 </div>
             </div>
@@ -204,7 +204,37 @@
 </div>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
+    /* NEW - Pull data from View by serialization */
+    var widgets = @Html.Raw(Json.Serialize(ViewData["Data"]));
+    /* Push data into new arrays */
+    var subNames = [];
+    var subData = [];
+    widgets.forEach(function(widget){
+        subNames.push(widget.name);
+        subData.push(widget.total);
+    });
+    $("#income-value").html("$"+subData[0]);
+    $("#1-value").html("-$"+subData[1]);
+    $("#2-value").html("-$"+subData[2]);
+    $("#3-value").html("-$"+subData[3]);
+    $("#4-value").html("-$"+subData[4]);
+    $("#5-value").html("-$"+subData[5]);
+    $("#6-value").html("-$"+subData[6]);
+    var total = subData[0]-subData[1]-subData[2]-subData[3]-subData[4]-subData[5]-subData[6]-subData[7];
+    $("#remaining-value").html("$"+total);
+    $("#7-value").html("-$"+subData[7]);
+
+    $("#1-name").html(subNames[1]);
+    $("#2-name").html(subNames[2]);
+    $("#3-name").html(subNames[3]);
+    $("#4-name").html(subNames[4]);
+    $("#5-name").html(subNames[5]);
+    $("#6-name").html(subNames[6]);
+    //$("#7-name").html("$"+subNames[7]);
+
     $(document).ready(function () {
+        
+
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         //$('.modal-trigger').leanModal();
         $('#IncomeModal').modal({

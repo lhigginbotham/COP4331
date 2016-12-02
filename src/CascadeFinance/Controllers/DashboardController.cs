@@ -19,8 +19,25 @@ namespace CascadeFinance.Controllers
             _context = context;
             _userManager = userManager;
         }
+
+        // Dashboard view method
         public IActionResult Dashboard()
         {
+            /* Create feaux data */
+            Models.Widgets[] widgets = new Models.Widgets[]
+            {
+                new Models.Widgets { WidgetId = 0, Name = "Potatoes", Priority = 1, Total = 100, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Tomatoes", Priority = 2, Total = 50, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Hambugers", Priority = 1, Total = 100, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Tacos", Priority = 2, Total = 50, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Goldfish", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Beans", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Health", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
+                new Models.Widgets { WidgetId = 0, Name = "Other", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 }
+            };
+
+            /* Store data in view-accessible variable (global) !!! */
+            ViewData["Data"] = widgets;
             return View();
         }
 
@@ -61,6 +78,7 @@ namespace CascadeFinance.Controllers
                 new Models.Widgets { WidgetId = 0, Name = "Tacos", Priority = 2, Total = 50, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
                 new Models.Widgets { WidgetId = 0, Name = "Goldfish", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 },
                 new Models.Widgets { WidgetId = 0, Name = "Beans", Priority = 3, Total = 75, ApplicationUser = new Models.ApplicationUser { Widget = null, BankAccount = null }, ApplicationUserId = 0 }
+                
             };
 
             /* Store data in view-accessible variable (global) !!! */
