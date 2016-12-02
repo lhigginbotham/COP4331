@@ -65,9 +65,9 @@ namespace CascadeFinance.Controllers
             var user = GetCurrentUserAsync();
 
             /* grab data from db */
-            //var widgetsDb = _context.Widgets
-                                    //.Where(b => b.ApplicationUserId == user.Id)
-                                    //.ToList();
+            var widgetsDb = _context.Widgets
+                                    .Where(b => b.ApplicationUserId == user.Id)
+                                    .ToList();
 
             /* Create feaux data */
             Models.Widgets[] widgets = new Models.Widgets[]
